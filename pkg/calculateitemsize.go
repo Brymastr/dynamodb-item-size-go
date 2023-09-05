@@ -1,6 +1,7 @@
-package main
+package pkg
 
 import (
+	"fmt"
 	"math"
 
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
@@ -14,6 +15,7 @@ func CalculateItemSize(putInput *dynamodb.PutItemInput) int {
 	totalKeySize := 0
 	totalValueSize := 0
 	for key, attributeValue := range putInput.Item {
+		fmt.Println(key)
 		totalKeySize += len(key)
 		totalValueSize += calculateAttributeValueSize(attributeValue)
 	}
